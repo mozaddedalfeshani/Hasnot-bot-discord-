@@ -1,3 +1,4 @@
+from linkConvert import ytdl
 import this
 
 import discord
@@ -7,7 +8,6 @@ import wikipedia
 
 TOKEN = 'MTA2Nzk0OTk4MDM4NTU0NjMzMA.Ggy8Xu.C_GhYYHeb3OEm01E6GvHPnFml2BykwkgMGeiWE'
 
-from linkConvert import ytdl
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -27,8 +27,6 @@ async def on_message(message):
 
     give = message.content
 
-
-
     if (message.content.startswith('hh')):
         command_key = message.content[3:6]
         # summation
@@ -42,7 +40,6 @@ async def on_message(message):
             # print(text)
             try:
                 await message.channel.send(msc.stca(text))
-
 
             except:
                 await message.channel.send('I am really sorry! I can\'t understand ! ')
@@ -90,16 +87,48 @@ async def on_message(message):
         elif (message.content == "who is amily"):
             await message.channel.send("Amily is shanto\'s GF! And our vabi")
 
-
-
-
         elif message.content[:].lower() == "who is murad":
-            await message.channel.send("Murad is my Developer/ Creator 🥰 . His skill on  discord server is awesome 🥰 you can hire him ")
+            await message.channel.send(
+                "Murad is my Developer/ Creator 🥰 . His skill on  discord server is awesome 🥰 you can hire him ")
 
-        elif message.content.lower() == 'bye':
-            await message.channel.send("Take care ! ")
+    # normal message area
 
+    elif 'hello' == message.content.lower():
+        await message.channel.send("Hello ! আপনি কেমন আছেন ?")
 
+    elif 'bye' == message.content[0:].lower():
+
+        await message.channel.send("Take care ! ")
+
+    elif 'fuck' in message.content.lower() or 'bokachoda' in message.content.lower():
+        await message.channel.send('খারাপ ভাষা ব্যবহার করা কি ভাল?')
+
+    elif 'murad' == message.content.lower():
+        await message.channel.send('মুরাদ এখন ব্যস্ত, আমার সাথে শেয়ার করতে পারেন !')
+
+    elif 'who is sushanto' in message.content.lower() or 'who is sushanto roy' in message.content.lower():
+        await message.channel.send('সুশান্ত কুমার রায় ! তিনি **Dream it Possible ** গ্রুপের অন্যতম সেরা সদস্য, '
+                                   'তিনি খুব ভদ্র ছেলে এবং তিনি সবসময় সম্পর্ক আরও ভাল করার চেষ্টা করেন।')
+
+    elif 'who is junayed' in message.content.lower() in message.content.lower() or 'who is junayed ahmed' in message.content.lower():
+        await message.channel.send('জুনায়েদ আহমেদ! তিনি তার ফিটনেস এবং ক্রিকেটপ্রেমী হিসেবে বিখ্যাত। তিনি **Dream it '
+                                   'Possible** গ্রুপের সদস্য ')
+
+    elif 'who is ajoy' in message.content.lower() in message.content.lower() or 'who is ajoy saha' in message.content.lower():
+        await message.channel.send('অজয় সাহা, তিনি সংগ্রাম এবং প্রেরণার জন্য বিখ্যাত। তিনি ডিপের একজন গুরুত্বপূর্ণ '
+                                   'সদস্য এবং বর্তমানে তিনি **Dream it possible** গ্রুপের মডারেটর হিসাবে কাজ করছেন।')
+
+    elif 'who is hasnat' == message.content.lower() or 'who is hasnat hridoy' == message.content.lower():
+        await message.channel.send('হাসনাত হৃদয়! তিনি তার অত্যধিক চিন্তার জন্য বিখ্যাত শুধু তাই নয়, তার একটি ভাল '
+                                   'লক্ষণও রয়েছে যে তিনি গুরুতরভাবে তার নিজের বাহক হিসাবে গড়ে উঠেছে। তিনি **Dream '
+                                   'it possible** গ্রুপের শিক্ষক ও পরামর্শদাতা হিসাবে কাজ করছেন।')
+
+    elif 'who is murad' == message.content.lower() or 'who is m a murad' == message.content.lower():
+        await message.channel.send('এম এ মুরাদ! তিনি **Dream it Possible** গ্রুপের প্রতিষ্ঠাতা এবং সিইও। সেও আমাকে '
+                                   'ডেভেলপ করছে,দিন দিন আমি আরও এগিয়ে যাচ্ছি উন্নয়নশীল ভবিষ্যতের দিকে')
+
+    else:
+        print("print running")
 
     # else:
     #     print('start')
