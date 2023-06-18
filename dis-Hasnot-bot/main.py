@@ -6,7 +6,7 @@ import speedtest
 from muradian import msc
 import wikipedia
 
-TOKEN = 'MTA2Nzk0OTk4MDM4NTU0NjMzMA.Ggy8Xu.C_GhYYHeb3OEm01E6GvHPnFml2BykwkgMGeiWE'
+
 
 
 intents = discord.Intents.default()
