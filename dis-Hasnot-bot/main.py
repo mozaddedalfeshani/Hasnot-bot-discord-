@@ -4,13 +4,17 @@ from discord.ext import commands
 import discord
 from linkConvert import ytdl
 import this
+import resultPage
+
+from resultPage import resultPage as gr
+
 
 import dipInfo as di
 # import dipInfo
 # from dipInfo import dipInformation
 # from dipInformation import person
 
-
+TOKEN = "MTA2Nzk0OTk4MDM4NTU0NjMzMA.G9f3sg.3bQsbFbuhe-YkVPMlPssDeFYKJd9abUblnSy_c"
 # import speedtest
 
 # intention area
@@ -50,6 +54,7 @@ async def on_message(message):
                 await message.channel.send('I am really sorry! I can\'t understand ! ')
                 await message.channel.send('Please folow this system: hh clc digit_count \{digit\'s by space\}')
 
+        # serching function
         elif (command_key == 'src'):
             await message.channel.send('I am trying to answering your question! ')
             com = message.content[7:]
@@ -78,17 +83,36 @@ async def on_message(message):
             text = message.content[7:]
             await message.channel.send(msc.mavg(text))
 
-        elif (command_key == 'ser'):
-            if (message.content == 'hh server speed'):
-                await message.channel.send("please wait few second :)")
-                test = speedtest.Speedtest()
-                down = test.download()
-                up = test.upload()
-                ans = f'Internet Speed of server is:\nDownload: {down / 1024 / 1024 / 8 :.3f} Mbps \nUpload: {up / 1024 / 1024 / 8 :.3f} Mbps'
+        elif (command_key == 'srr'):
+            # hh result 221156047
+            id = message.content[7:16]
+            if len(id) == 9:
 
-                await message.channel.send(ans)
+                print(id)
+                try:
+                    print("try runnig")
+                    value = gr.getResult(id)
 
-                # it's on working ! Very soon this feature will come
+                except:
+                    print("Fail to load")
+                    pass
+
+                await message.channel.send(f'{value} ')
+
+            else:
+                await message.channel.send("Enter the valid Id for get result")
+
+        # elif (command_key == 'ser'):
+        #     if (message.content == 'hh server speed'):
+        #         await message.channel.send("please wait few second :)")
+        #         test = speedtest.Speedtest()
+        #         down = test.download()
+        #         up = test.upload()
+        #         ans = f'Internet Speed of server is:\nDownload: {down / 1024 / 1024 / 8 :.3f} Mbps \nUpload: {up / 1024 / 1024 / 8 :.3f} Mbps'
+
+        #         await message.channel.send(ans)
+
+            # it's on working ! Very soon this feature will come
         elif (message.content == "who is amily"):
             await message.channel.send("Amily is shanto\'s GF! And our vabi")
 
@@ -96,8 +120,6 @@ async def on_message(message):
             await message.channel.send(
 
                 "Murad is my Developer/ Creator 🥰 . His skill on  discord server is awesome 🥰 you can hire him ")
-
-        
 
     # normal message area
 
