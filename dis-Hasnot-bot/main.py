@@ -2,8 +2,9 @@ import wikipedia
 from muradian import msc
 from discord.ext import commands
 import discord
+import speedtest
 from linkConvert import ytdl
-import this
+import time
 import resultPage
 
 from resultPage import resultPage as gr
@@ -14,7 +15,7 @@ import dipInfo as di
 # from dipInfo import dipInformation
 # from dipInformation import person
 
-TOKEN = "MTA2Nzk0OTk4MDM4NTU0NjMzMA.G9f3sg.3bQsbFbuhe-YkVPMlPssDeFYKJd9abUblnSy_c"
+TOKEN = "MTA2Nzk0OTk4MDM4NTU0NjMzMA.G_MscM.4ZWOTXtxyFuNA5P5VKrESw-Uw40z0_WZUnZULY"
 # import speedtest
 
 # intention area
@@ -88,9 +89,7 @@ async def on_message(message):
             id = message.content[7:16]
             if len(id) == 9:
 
-                print(id)
                 try:
-                    print("try runnig")
                     value = gr.getResult(id)
 
                 except:
@@ -102,15 +101,16 @@ async def on_message(message):
             else:
                 await message.channel.send("Enter the valid Id for get result")
 
-        # elif (command_key == 'ser'):
-        #     if (message.content == 'hh server speed'):
-        #         await message.channel.send("please wait few second :)")
-        #         test = speedtest.Speedtest()
-        #         down = test.download()
-        #         up = test.upload()
-        #         ans = f'Internet Speed of server is:\nDownload: {down / 1024 / 1024 / 8 :.3f} Mbps \nUpload: {up / 1024 / 1024 / 8 :.3f} Mbps'
+        elif (command_key == 'ser'):
+            if (message.content == 'hh server speed'):
+                await message.channel.send("please wait few second :)")
 
-        #         await message.channel.send(ans)
+                test = speedtest.Speedtest()
+                down = test.download()
+                up = test.upload()
+                ans = f'Internet Speed of server is:\nDownload: {down / 1024 / 1024 / 8 :.3f} Mbps \nUpload: {up / 1024 / 1024 / 8 :.3f} Mbps'
+
+                await message.channel.send(ans)
 
             # it's on working ! Very soon this feature will come
         elif (message.content == "who is amily"):
