@@ -1,14 +1,17 @@
+import wikipedia
+from muradian import msc
+from discord.ext import commands
+import discord
 from linkConvert import ytdl
 import this
 
-import dipInfo
+import dipInfo as di
+# import dipInfo
+# from dipInfo import dipInformation
+# from dipInformation import person
 
 
-import discord
-from discord.ext import commands
 # import speedtest
-from muradian import msc
-import wikipedia
 
 # intention area
 discord.Intents.default().message_content = True
@@ -19,8 +22,6 @@ client = discord.Client(intents=discord.Intents.all())
 @client.event
 async def on_ready():
     print("message content loaded")
-
-
 
 
 @client.event
@@ -59,7 +60,7 @@ async def on_message(message):
 
             except:
                 await message.channel.send('I am sorry , I can\'t answer this ! ')
-                await message.channel.send("You can report us whcih quedtion I fialed")
+                await message.channel.send("You can report us on my Admin server")
                 await message.content.send("Link : https://discord.gg/VZ93PYTS5e")
 
         elif (command_key == 'fli'):
@@ -93,7 +94,10 @@ async def on_message(message):
 
         elif message.content[:].lower() == "who is murad":
             await message.channel.send(
+
                 "Murad is my Developer/ Creator 🥰 . His skill on  discord server is awesome 🥰 you can hire him ")
+
+        
 
     # normal message area
 
@@ -107,44 +111,37 @@ async def on_message(message):
     elif 'fuck' in message.content.lower() or 'bokachoda' in message.content.lower():
         await message.channel.send('খারাপ ভাষা ব্যবহার করা কি ভাল?')
 
-    elif 'murad' == message.content.lower():
-        await message.channel.send('মুরাদ এখন ব্যস্ত, আমার সাথে শেয়ার করতে পারেন !')
+    elif 'murad' == message.content.lower() or 'hasnat' == message.content.lower() or 'shanto' == message.content.lower() or 'junayed' == message.content.lower() or 'juna' == message.content.lower() or 'aong' == message.content.lower() or 'ajoy' == message.content.lower() or 'sushanto' == message.content.lower():
+        name = message.content
+        await message.channel.send(di.busyList(name))
 
     elif 'who is sushanto' in message.content.lower() or 'who is sushanto roy' in message.content.lower():
-        await message.channel.send('সুশান্ত কুমার রায় ! তিনি **Dream it Possible ** গ্রুপের অন্যতম সেরা সদস্য, '
-                                   'তিনি খুব ভদ্র ছেলে এবং তিনি সবসময় সম্পর্ক আরও ভাল করার চেষ্টা করেন।')
+        await message.channel.send(di.person("shanto"))
 
     elif 'who is junayed' in message.content.lower() in message.content.lower() or 'who is junayed ahmed' in message.content.lower():
-        await message.channel.send('জুনায়েদ আহমেদ! তিনি তার ফিটনেস এবং ক্রিকেটপ্রেমী হিসেবে বিখ্যাত। তিনি **Dream it '
-                                   'Possible** গ্রুপের সদস্য ')
+        await message.channel.send(di.person("junayed"))
 
     elif 'who is ajoy' in message.content.lower() in message.content.lower() or 'who is ajoy saha' in message.content.lower():
-        await message.channel.send('অজয় সাহা, তিনি সংগ্রাম এবং প্রেরণার জন্য বিখ্যাত। তিনি ডিপের একজন গুরুত্বপূর্ণ '
-                                   'সদস্য এবং বর্তমানে তিনি **Dream it possible** গ্রুপের মডারেটর হিসাবে কাজ করছেন।')
+        await message.channel.send(di.person("ajoy"))
 
     elif 'who is hasnat' == message.content.lower() or 'who is hasnat hridoy' == message.content.lower():
-        await message.channel.send('হাসনাত হৃদয়! তিনি তার অত্যধিক চিন্তার জন্য বিখ্যাত শুধু তাই নয়, তার একটি ভাল '
-                                   'লক্ষণও রয়েছে যে তিনি গুরুতরভাবে তার নিজের বাহক হিসাবে গড়ে উঠেছে। তিনি **Dream '
-                                   'it possible** গ্রুপের শিক্ষক ও পরামর্শদাতা হিসাবে কাজ করছেন।')
+        await message.channel.send(di.person("hasnat"))
 
     elif 'who is murad' == message.content.lower() or 'who is m a murad' == message.content.lower():
-        await message.channel.send('এম এ মুরাদ! তিনি **Dream it Possible** গ্রুপের প্রতিষ্ঠাতা এবং সিইও। সেও আমাকে '
-                                   'ডেভেলপ করছে,দিন দিন আমি আরও এগিয়ে যাচ্ছি উন্নয়নশীল ভবিষ্যতের দিকে')
+        x = di.person("murad")
+
+        await message.channel.send(x)
 
     else:
-        print("print running")
+        @client.event
+        async def on_message_edit(before, after):
+            x = before.content
+            await before.channel.send(
 
-    # else:
-    #     print('start')
-    #     @client.event()
-    #     async def on_message_edit(before, after):
-    #         await before.channel.send(
-    #             f'{before.author} edit a message.\n'
-    #             f'Before: {before.content}\n'
-    #             f'After: {after.content}\n'
-    #         )
-
-
+                f' **{before.author}** edit a message.\n'
+                f'Before:  {di.strike(x)} \n'
+                f'After: {after.content}\n'
+            )
 
 
 client.run(TOKEN)
