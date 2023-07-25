@@ -15,7 +15,7 @@ import dipInfo as di
 # from dipInfo import dipInformation
 # from dipInformation import person
 
-TOKEN = "MTA2Nzk0OTk4MDM4NTU0NjMzMA.G_MscM.4ZWOTXtxyFuNA5P5VKrESw-Uw40z0_WZUnZULY"
+
 # import speedtest
 
 # intention area
