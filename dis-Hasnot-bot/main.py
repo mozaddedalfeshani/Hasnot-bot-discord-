@@ -21,15 +21,6 @@ async def on_ready():
     print("message content loaded")
 
 
-@bot.event
-async def on_ready():
-    print(f'logged in as {client.user}')
-    try:
-        synced = await client.tree.sync()
-        print("Bot commands Loaded")
-
-    except Exception as e:
-        print(e)
 
 
 @client.event
