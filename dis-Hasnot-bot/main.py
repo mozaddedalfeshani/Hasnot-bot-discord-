@@ -1,23 +1,35 @@
 from linkConvert import ytdl
 import this
 
+import dipInfo
+
+
 import discord
-import speedtest
+from discord.ext import commands
+# import speedtest
 from muradian import msc
 import wikipedia
 
+# intention area
+discord.Intents.default().message_content = True
 
-
-
-intents = discord.Intents.default()
-intents.message_content = True
-
-client = discord.Client(intents=intents)
+client = discord.Client(intents=discord.Intents.all())
 
 
 @client.event
 async def on_ready():
-    print(f'We have logged in as {client.user}')
+    print("message content loaded")
+
+
+@bot.event
+async def on_ready():
+    print(f'logged in as {client.user}')
+    try:
+        synced = await client.tree.sync()
+        print("Bot commands Loaded")
+
+    except Exception as e:
+        print(e)
 
 
 @client.event
@@ -26,6 +38,7 @@ async def on_message(message):
         return
 
     give = message.content
+    print(give)
 
     if (message.content.startswith('hh')):
         command_key = message.content[3:6]
@@ -139,6 +152,8 @@ async def on_message(message):
     #             f'Before: {before.content}\n'
     #             f'After: {after.content}\n'
     #         )
+
+
 
 
 client.run(TOKEN)
