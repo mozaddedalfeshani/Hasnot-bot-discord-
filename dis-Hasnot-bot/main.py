@@ -1,3 +1,4 @@
+import dipInfo as di
 import wikipedia
 from muradian import msc
 from discord.ext import commands
@@ -6,17 +7,13 @@ import speedtest
 from linkConvert import ytdl
 import time
 import resultPage
+import dipFun
+
+from dipFun import dipRandom as dipRan
 
 from resultPage import resultPage as gr
 
 
-import dipInfo as di
-# import dipInfo
-# from dipInfo import dipInformation
-# from dipInformation import person
-
-
-# import speedtest
 
 # intention area
 discord.Intents.default().message_content = True
@@ -35,7 +32,7 @@ async def on_message(message):
         return
 
     give = message.content
-    print(give)
+    # print(give)
 
     if (message.content.startswith('hh')):
         command_key = message.content[3:6]
@@ -52,8 +49,8 @@ async def on_message(message):
                 await message.channel.send(msc.stca(text))
 
             except:
-                await message.channel.send('I am really sorry! I can\'t understand ! ')
-                await message.channel.send('Please folow this system: hh clc digit_count \{digit\'s by space\}')
+                await message.channel.send('> I am really sorry! I can\'t understand ! ')
+                await message.channel.send('> Please folow this system: hh clc digit_count \{digit\'s by space\}')
 
         # serching function
         elif (command_key == 'src'):
@@ -65,9 +62,9 @@ async def on_message(message):
                 await message.channel.send(sms)
 
             except:
-                await message.channel.send('I am sorry , I can\'t answer this ! ')
-                await message.channel.send("You can report us on my Admin server")
-                await message.content.send("Link : https://discord.gg/VZ93PYTS5e")
+                await message.channel.send('> I am sorry , I can\'t answer this ! ')
+                await message.channel.send("> You can report us on my Admin server")
+                await message.content.send("> Link : https://discord.gg/VZ93PYTS5e")
 
         elif (command_key == 'fli'):
             com = message.content[8:]
@@ -76,7 +73,7 @@ async def on_message(message):
         elif (command_key == 'ytd'):
             text = message.content[8:]
             lol = ytdl(text)
-            await message.channel.send(" Here the Download link: ")
+            await message.channel.send(">  Here the Download link: ")
             # sending the link from here
             await message.channel.send(lol)
 
@@ -101,25 +98,45 @@ async def on_message(message):
             else:
                 await message.channel.send("Enter the valid Id for get result")
 
-        elif (command_key == 'ser'):
-            if (message.content == 'hh server speed'):
-                await message.channel.send("please wait few second :)")
+        elif (command_key == 'who'):
+            # hh ars 221156035 hasnat 3.45
 
-                test = speedtest.Speedtest()
-                down = test.download()
-                up = test.upload()
-                ans = f'Internet Speed of server is:\nDownload: {down / 1024 / 1024 / 8 :.3f} Mbps \nUpload: {up / 1024 / 1024 / 8 :.3f} Mbps'
+            x = dipRan.who()
+            await message.channel.send(f' > Selected person is **{x}** 💐')
 
-                await message.channel.send(ans)
+        elif (command_key == 'mog'):
+
+            name = message.content
+            name = name[7:]
+            x = name.split()
+            last = len(x)-1
+            print(f'last : {last}')
+            y = int(x.pop(last))  # given last digit damn sure
+            x.pop(last-1)  # final list
+
+            result = dipFun.dipRandom.givenWhoGroup(x, y)
+            await message.channel.send(f' > The random are : \n > {result}')
+
+        # elif (command_key == 'ser'):
+        #     if (message.content == 'hh server speed'):
+        #         await message.channel.send("please wait few second :)")
+        #
+        #         test = speedtest.Speedtest()
+        #         down = test.download()
+        #         up = test.upload()
+        #         ans = f'Internet Speed of server is:\nDownload: {down / 1024 / 1024 / 8 :.3f} Mbps \nUpload: {up / 1024 / 1024 / 8 :.3f} Mbps'
+        #
+        #         await message.channel.send(ans)
 
             # it's on working ! Very soon this feature will come
+
         elif (message.content == "who is amily"):
-            await message.channel.send("Amily is shanto\'s GF! And our vabi")
+            await message.channel.send(" > Amily is shanto\'s GF! And our vabi")
 
         elif message.content[:].lower() == "who is murad":
             await message.channel.send(
 
-                "Murad is my Developer/ Creator 🥰 . His skill on  discord server is awesome 🥰 you can hire him ")
+                " > Murad is my Developer/ Creator 🥰 . His skill on  discord server is awesome 🥰 you can hire him ")
 
     # normal message area
 
