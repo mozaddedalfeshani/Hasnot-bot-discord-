@@ -99,7 +99,6 @@ async def on_message(message):
                 await message.channel.send("Enter the valid Id for get result")
 
         elif (command_key == 'who' and len(message.content) == 6):
-            
 
             x = dipRan.who()
             await message.channel.send(f' > Selected person is **{x}** 💐')
@@ -130,15 +129,15 @@ async def on_message(message):
 
             # it's on working ! Very soon this feature will come
 
-        elif (message.content == "who is amily"):
-            await message.channel.send(" > Amily is shanto\'s GF! And our vabi")
-
         elif message.content[:].lower() == "who is murad":
             await message.channel.send(
 
                 " > Murad is my Developer/ Creator 🥰 . His skill on  discord server is awesome 🥰 you can hire him ")
 
     # normal message area
+
+    elif (message.content == "who is amily"):
+        await message.channel.send(" > Amily is shanto\'s GF! And our vabi")
 
     elif ('vote me' in message.content.lower() or 'vote kor' in message.content.lower() or 'vote de' == message.content.lower()):
         # print(message.content)
