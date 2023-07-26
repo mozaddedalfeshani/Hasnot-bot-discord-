@@ -110,7 +110,7 @@ async def on_message(message):
             name = name[7:]
             x = name.split()
             last = len(x)-1
-            print(f'last : {last}')
+            # print(f'last : {last}')
             y = int(x.pop(last))  # given last digit damn sure
             x.pop(last-1)  # final list
 
@@ -139,6 +139,13 @@ async def on_message(message):
                 " > Murad is my Developer/ Creator 🥰 . His skill on  discord server is awesome 🥰 you can hire him ")
 
     # normal message area
+
+    elif ('vote me' == message.content.lower() or 'vote kor' in message.content.lower() or 'vote de' == message.content.lower()):
+        # print(message.content)
+        emoji = '\N{THUMBS UP SIGN}'
+        emoji_2 = '\N{THUMBS DOWN SIGN}'
+        await message.add_reaction(emoji)
+        await message.add_reaction(emoji_2)
 
     elif 'hello' == message.content.lower():
         await message.channel.send("Hello ! আপনি কেমন আছেন ?")
