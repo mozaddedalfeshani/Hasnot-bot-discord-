@@ -101,7 +101,7 @@ async def on_message(message):
         elif (command_key == 'who' and len(message.content) == 6):
 
             x = dipRan.who()
-            await message.channel.send(f' > Selected person is **{x}** 💐')
+            await message.channel.send(f' {message.author.mention} \n > Selected person is **{x}** 💐')
 
         elif (command_key == 'mog'):
 
@@ -115,19 +115,6 @@ async def on_message(message):
 
             result = dipFun.dipRandom.givenWhoGroup(x, y)
             await message.channel.send(f' > The random are : \n > {result}')
-
-        # elif (command_key == 'ser'):
-        #     if (message.content == 'hh server speed'):
-        #         await message.channel.send("please wait few second :)")
-        #
-        #         test = speedtest.Speedtest()
-        #         down = test.download()
-        #         up = test.upload()
-        #         ans = f'Internet Speed of server is:\nDownload: {down / 1024 / 1024 / 8 :.3f} Mbps \nUpload: {up / 1024 / 1024 / 8 :.3f} Mbps'
-        #
-        #         await message.channel.send(ans)
-
-            # it's on working ! Very soon this feature will come
 
         elif message.content[:].lower() == "who is murad":
             await message.channel.send(
@@ -143,39 +130,41 @@ async def on_message(message):
         # print(message.content)
         emoji = '\N{THUMBS UP SIGN}'
         emoji_2 = '\N{THUMBS DOWN SIGN}'
+        
         await message.add_reaction(emoji)
         await message.add_reaction(emoji_2)
+        await message.add_reaction('🥶')
 
     elif 'hello' == message.content.lower():
-        await message.channel.send("Hello ! আপনি কেমন আছেন ?")
+        await message.channel.send(f"Hello {message.author.mention} ! আপনি কেমন আছেন ?")
 
     elif 'bye' == message.content[0:].lower():
 
-        await message.channel.send("Take care ! ")
+        await message.channel.send(f"{message.author.mention} Take care ! ")
 
     elif 'fuck' in message.content.lower() or 'bokachoda' in message.content.lower():
-        await message.channel.send('খারাপ ভাষা ব্যবহার করা কি ভাল?')
+        await message.channel.send(f' {message.author.mention} খারাপ ভাষা ব্যবহার করা কি ভাল?')
 
     elif 'murad' == message.content.lower() or 'hasnat' == message.content.lower() or 'shanto' == message.content.lower() or 'junayed' == message.content.lower() or 'juna' == message.content.lower() or 'aong' == message.content.lower() or 'ajoy' == message.content.lower() or 'sushanto' == message.content.lower():
         name = message.content
-        await message.channel.send(di.busyList(name))
+        await message.channel.send(f'{message.author.mention}\n > {di.busyList(name)}')
 
     elif 'who is sushanto' in message.content.lower() or 'who is sushanto roy' in message.content.lower():
-        await message.channel.send(di.person("shanto"))
+        await message.channel.send(f'{message.author.mention}\n > {di.person("shanto")}')
 
     elif 'who is junayed' in message.content.lower() in message.content.lower() or 'who is junayed ahmed' in message.content.lower():
-        await message.channel.send(di.person("junayed"))
+        await message.channel.send(f'{message.author.mention}\n > {di.person("junayed")}')
 
     elif 'who is ajoy' in message.content.lower() in message.content.lower() or 'who is ajoy saha' in message.content.lower():
-        await message.channel.send(di.person("ajoy"))
+        await message.channel.send(f'{message.author.mention}\n > {di.person("ajoy")}')
 
     elif 'who is hasnat' == message.content.lower() or 'who is hasnat hridoy' == message.content.lower():
-        await message.channel.send(di.person("hasnat"))
+        await message.channel.send(f'{message.author.mention}\n > {di.person("hasnat")}')
 
     elif 'who is murad' == message.content.lower() or 'who is m a murad' == message.content.lower():
         x = di.person("murad")
 
-        await message.channel.send(x)
+        await message.channel.send(f'{message.author.mention} \n > {x}')
 
     else:
         @client.event
@@ -183,9 +172,9 @@ async def on_message(message):
             x = before.content
             await before.channel.send(
 
-                f' **{before.author}** edit a message.\n'
-                f'Before:  {di.strike(x)} \n'
-                f'After: {after.content}\n'
+                f' **{before.author.mention}** edit a message.\n'
+                f'> Before:  {di.strike(x)} \n'
+                f'> After: {after.content}\n'
             )
 
 
