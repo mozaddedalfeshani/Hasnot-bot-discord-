@@ -98,8 +98,8 @@ async def on_message(message):
             else:
                 await message.channel.send("Enter the valid Id for get result")
 
-        elif (command_key == 'who'):
-            # hh ars 221156035 hasnat 3.45
+        elif (command_key == 'who' and len(message.content) == 6):
+            
 
             x = dipRan.who()
             await message.channel.send(f' > Selected person is **{x}** 💐')
@@ -140,7 +140,7 @@ async def on_message(message):
 
     # normal message area
 
-    elif ('vote me' == message.content.lower() or 'vote kor' in message.content.lower() or 'vote de' == message.content.lower()):
+    elif ('vote me' in message.content.lower() or 'vote kor' in message.content.lower() or 'vote de' == message.content.lower()):
         # print(message.content)
         emoji = '\N{THUMBS UP SIGN}'
         emoji_2 = '\N{THUMBS DOWN SIGN}'
