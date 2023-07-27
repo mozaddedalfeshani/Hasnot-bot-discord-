@@ -1,18 +1,24 @@
-import dipInfo as di
-import wikipedia
-from muradian import msc
-from discord.ext import commands
+# import area
 import discord
-import speedtest
-from linkConvert import ytdl
-import time
 import resultPage
 import dipFun
+import time
+import wikipedia
+import dipInfo as di
+import linkConvert
+import lineConvert
+
+
+# from to import
+from discord.ext import commands
+from muradian import msc
+from linkConvert import ytdl
 
 from dipFun import dipRandom as dipRan
+from lineConvert import hh_ctd
 
 from resultPage import resultPage as gr
-
+TOKEN = "MTA2Nzk0OTk4MDM4NTU0NjMzMA.GaxPCK.I6aU1p1afASYH7DlHRqx2UaXc9LZN25ehGEj5c"
 
 
 # intention area
@@ -116,10 +122,14 @@ async def on_message(message):
             result = dipFun.dipRandom.givenWhoGroup(x, y)
             await message.channel.send(f' > The random are : \n > {result}')
 
-        elif message.content[:].lower() == "who is murad":
-            await message.channel.send(
+        elif (command_key == 'ctd'):
 
-                " > Murad is my Developer/ Creator 🥰 . His skill on  discord server is awesome 🥰 you can hire him ")
+            x = hh_ctd.create_thread_hh(message.content)
+            thread = await message.channel.create_thread(
+                name=x
+            )
+            await message.channel.send(f"{message.author.mention} Successfully create privete Thread")
+            await thread.send(f'{message.author.mention} create this Thread ')
 
     # normal message area
 
@@ -130,7 +140,7 @@ async def on_message(message):
         # print(message.content)
         emoji = '\N{THUMBS UP SIGN}'
         emoji_2 = '\N{THUMBS DOWN SIGN}'
-        
+
         await message.add_reaction(emoji)
         await message.add_reaction(emoji_2)
         await message.add_reaction('🥶')
@@ -165,6 +175,22 @@ async def on_message(message):
         x = di.person("murad")
 
         await message.channel.send(f'{message.author.mention} \n > {x}')
+
+        # thread = await message.channel.create_thread(
+        #     name="example"
+        # )
+        # print(message.channel)
+        # await thread.send("This is an example message")
+
+    elif 'hht' == message.content.lower():
+
+        print("done")
+        channel = client.get_channel(int(channel_id))
+        thread = await channel.create_thread(
+            name="example",
+            type=ChannelType.public_thread
+        )
+        await thread.send("This is an example message")
 
     else:
         @client.event
