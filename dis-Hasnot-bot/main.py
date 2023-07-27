@@ -18,7 +18,6 @@ from dipFun import dipRandom as dipRan
 from lineConvert import hh_ctd
 
 from resultPage import resultPage as gr
-TOKEN = "MTA2Nzk0OTk4MDM4NTU0NjMzMA.GaxPCK.I6aU1p1afASYH7DlHRqx2UaXc9LZN25ehGEj5c"
 
 
 # intention area
