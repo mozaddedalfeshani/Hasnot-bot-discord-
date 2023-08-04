@@ -68,8 +68,6 @@ async def on_message(message):
             except:
                 await message.channel.send('> I am sorry , I can\'t answer this ! ', delete_after=5)
                 await message.channel.send("> You can report us on my Admin server \n> Link : https://discord.gg/VZ93PYTS5e")
-                await message.add_reaction("👍")
-                await message.add_reaction("👎")
 
         elif (command_key == 'fli'):
             com = message.content[8:]
