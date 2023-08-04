@@ -1,23 +1,18 @@
 # import area
 import discord
-import resultPage
-import dipFun
-import time
+import discord.ext
 import wikipedia
-import dipInfo as di
-import linkConvert
-import lineConvert
-
-
 # from to import
-from discord.ext import commands
 from muradian import msc
-from linkConvert import ytdl
 
+import dipFun
+from discord.ext import commands
+import dipInfo as di
 from dipFun import dipRandom as dipRan
 from lineConvert import hh_ctd
-
+from linkConvert import ytdl
 from resultPage import resultPage as gr
+
 
 
 # intention area
@@ -34,12 +29,15 @@ async def on_ready():
 @client.event
 async def on_message(message):
     if message.author == client.user:
+        print(f'{message.author} and {client.user}')
         return
 
     give = message.content
     # print(give)
 
-    if (message.content.startswith('hh')):
+    if message.content.startswith('hh'):
+        if message.content.lower() == 'hh help':
+            await message.channel.send("https://imurad12.blogspot.com/2023/08/not-discord-bot-documentation.html")
         command_key = message.content[3:6]
         # summation
         if command_key == 'sum':
@@ -55,11 +53,12 @@ async def on_message(message):
 
             except:
                 await message.channel.send('> I am really sorry! I can\'t understand ! ')
-                await message.channel.send('> Please folow this system: hh clc digit_count \{digit\'s by space\}')
+                await message.channel.send(
+                    '> Please folow this system: hh clc \{digit_count\} \{first Digit\} \{operator\} \{last digit\} ')
 
         # serching function
         elif (command_key == 'src'):
-            await message.channel.send('I am trying to answering your question! ')
+            await message.channel.send('I am trying to answering your question! ', delete_after=2)
             com = message.content[7:]
             # print(com)
             try:
@@ -113,10 +112,10 @@ async def on_message(message):
             name = message.content
             name = name[7:]
             x = name.split()
-            last = len(x)-1
+            last = len(x) - 1
             # print(f'last : {last}')
             y = int(x.pop(last))  # given last digit damn sure
-            x.pop(last-1)  # final list
+            x.pop(last - 1)  # final list
 
             result = dipFun.dipRandom.givenWhoGroup(x, y)
             await message.channel.send(f' > The random are : \n > {result}')
@@ -127,15 +126,33 @@ async def on_message(message):
             thread = await message.channel.create_thread(
                 name=x
             )
-            await message.channel.send(f"{message.author.mention} Successfully create privete Thread")
+            await message.channel.send(f"{message.author.mention} Successfully create private Thread")
             await thread.send(f'{message.author.mention} create this Thread ')
 
-    # normal message area
+        elif 'hhreact' in message.content:
+            await message.add_reaction('👍')
+            await message.add_reaction('👎')
+            await message.add_reaction('❤️')
+            await message.add_reaction('🤣')
+            await message.add_reaction('😢')
+            await message.add_reaction('😡')
 
-    elif (message.content == "who is amily"):
+    # normal message area
+    elif 'hhreact' in message.content:
+        await message.add_reaction('👍')
+        await message.add_reaction('👎')
+        await message.add_reaction('❤️')
+        await message.add_reaction('🤣')
+        await message.add_reaction('😢')
+        await message.add_reaction('😡')
+
+    elif message.content == "who is amily":
         await message.channel.send(" > Amily is shanto\'s GF! And our vabi")
 
-    elif ('vote me' in message.content.lower() or 'vote kor' in message.content.lower() or 'vote de' == message.content.lower()):
+    # Emojy get  section
+
+    elif (
+            'vote me' in message.content.lower() or 'vote kor' in message.content.lower() or 'vote de' == message.content.lower()):
         # print(message.content)
         emoji = '\N{THUMBS UP SIGN}'
         emoji_2 = '\N{THUMBS DOWN SIGN}'
@@ -181,26 +198,18 @@ async def on_message(message):
         # print(message.channel)
         # await thread.send("This is an example message")
 
-    elif 'hht' == message.content.lower():
-
-        print("done")
-        channel = client.get_channel(int(channel_id))
-        thread = await channel.create_thread(
-            name="example",
-            type=ChannelType.public_thread
-        )
-        await thread.send("This is an example message")
-
     else:
         @client.event
         async def on_message_edit(before, after):
             x = before.content
-            await before.channel.send(
+            print(client.user.id)
+            if (message.author.id != 1067949980385546330):
+                await before.channel.send(
 
-                f' **{before.author.mention}** edit a message.\n'
-                f'> Before:  {di.strike(x)} \n'
-                f'> After: {after.content}\n'
-            )
+                    f' **{before.author.mention}** edit a message.\n'
+                    f'> Before:  {di.strike(x)} \n'
+                    f'> After: {after.content}\n'
+                )
 
 
 client.run(TOKEN)
