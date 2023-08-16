@@ -29,7 +29,7 @@ async def on_ready():
 @client.event
 async def on_message(message):
     if message.author == client.user:
-        print(f'{message.author} and {client.user}')
+        # print(f'{message.author} and {client.user}')
         return
 
     give = message.content
@@ -60,14 +60,18 @@ async def on_message(message):
         elif (command_key == 'src'):
             await message.channel.send('I am trying to answering your question! ', delete_after=2)
             com = message.content[7:]
+
             # print(com)
             try:
+                page = wikipedia.page(com)
                 sms = wikipedia.summary(com, sentences=1)
                 await message.channel.send(sms)
+                await message.channel.send(page.url)
 
-            except:
+            except Exception as e:
+                print(e)
                 await message.channel.send('> I am sorry , I can\'t answer this ! ', delete_after=5)
-                await message.channel.send("> You can report us on my Admin server \n> Link : https://discord.gg/VZ93PYTS5e")
+                await message.channel.send("> You can report to us \n> Link : https://discord.gg/VZ93PYTS5e")
 
         elif (command_key == 'fli'):
             com = message.content[8:]
