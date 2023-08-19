@@ -13,7 +13,7 @@ from lineConvert import hh_ctd
 from linkConvert import ytdl
 from resultPage import resultPage as gr
 
-TOKEN = "MTA2Nzk0OTk4MDM4NTU0NjMzMA.GqfiAa.UEk5LtGB0_zw6GxkjQDU48Xosg6jwf2nwESLtg"
+
 
 # intention area
 discord.Intents.default().message_content = True
