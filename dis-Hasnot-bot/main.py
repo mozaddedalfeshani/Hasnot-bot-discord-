@@ -13,7 +13,7 @@ from lineConvert import hh_ctd
 from linkConvert import ytdl
 from resultPage import resultPage as gr
 
-
+TOKEN = "MTA2Nzk0OTk4MDM4NTU0NjMzMA.GqfiAa.UEk5LtGB0_zw6GxkjQDU48Xosg6jwf2nwESLtg"
 
 # intention area
 discord.Intents.default().message_content = True
@@ -211,7 +211,7 @@ async def on_message(message):
 
                     f' **{before.author.mention}** edit a message.\n'
                     f'> Before:  {di.strike(x)} \n'
-                    f'> After: {after.content}\n'
+                    f'> After: {after.content}\n', delete_after=5
                 )
 
 
