@@ -4,6 +4,8 @@ import discord.ext
 import wikipedia
 # from to import
 from muradian import msc
+import datetime
+from datetime import datetime
 
 import dipFun
 from discord.ext import commands
@@ -23,7 +25,9 @@ client = discord.Client(intents=discord.Intents.all())
 
 @client.event
 async def on_ready():
+
     print("message content loaded")
+    print(f'Login time {datetime.now()}')
 
 
 @client.event
