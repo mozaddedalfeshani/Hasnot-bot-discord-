@@ -14,7 +14,7 @@ from dipFun import dipRandom as dipRan
 from lineConvert import hh_ctd
 from linkConvert import ytdl
 from resultPage import resultPage as gr
-
+TOKEN = 'MTA2Nzk0OTk4MDM4NTU0NjMzMA.GzHiNc.eix2LVjHBV6XIPyYXBSmVle5jYqQn8yjcEb7_k'
 
 
 # intention area
