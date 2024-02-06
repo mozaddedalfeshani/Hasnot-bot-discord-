@@ -7,20 +7,35 @@ from muradian import msc
 import datetime
 from datetime import datetime
 
-import dipFun
+import components.dipFun
 from discord.ext import commands
-import dipInfo as di
-from dipFun import dipRandom as dipRan
-from lineConvert import hh_ctd
-from linkConvert import ytdl
-from resultPage import resultPage as gr
+import components.dipInfo as di
+from components.dipFun import dipRandom as dipRan
+from components.lineConvert import hh_ctd
+from components.linkConvert import ytdl
+from components.resultPage import resultPage as gr
 
 
+#firebase section
 
+import firebase_admin
+from firebase_admin import firestore
+
+from firebase_admin import credentials
+
+cred = credentials.Certificate("path/to/serviceAccountKey.json")
+firebase_admin.initialize_app(cred)
+
+db = firestore.client()
+# data ={
+#     "name": "murad"
+# }
+# db.collection('Hello').add(data)
 # intention area
 discord.Intents.default().message_content = True
-
+discord.Intents.voice_states = True #enable the voice states true
 client = discord.Client(intents=discord.Intents.all())
+
 
 
 @client.event
@@ -31,9 +46,58 @@ async def on_ready():
 
 
 @client.event
+
+async def on_voice_state_update(member, before, after):
+    try:
+        if before.channel != after.channel:  # Check for channel change
+            if after.channel:
+                # Retrive the guild name
+                server_name = member.guild.name
+                
+                db.collection(str(server_name)).document('voice').collection(str(member.name)).add({
+                    "voice":{
+                        "name":member.name,
+                        "Join": datetime.now()
+                    }
+                })
+
+                print(before.channel.guild.name)
+                print(f"{member.name} joined {after.channel.name}")
+            else:
+                server_name = member.guild.name
+                db.collection(str(server_name)).document(str(member.name)).set({
+                    "voice":{
+                        "Leave": datetime.now()
+                    }
+                },merge=True)
+                print(f"{member.name} left {before.channel.name}")
+    except Exception as err:
+        print(err)
+
+@client.event
 async def on_message(message):
+
+    try:
+        database = {
+            message.channel.name :{
+                "Messgae": message.content,
+                str(datetime.now()):{
+                    "Message": message.content,
+                    "Time": datetime.now()
+                }
+                
+            }
+        }
+        db.collection(message.guild.name).document(str(message.author.name)).set(database,merge=True)
+    except Exception as err:
+        print(err)
+
+    print(f"{message.author.name} (ID: {message.author.id}) sent message in '{message.channel.name}':")
+
     if message.author == client.user:
-        # print(f'{message.author} and {client.user}')
+        print(f'{message.author} and => {client.user}')
+        print(f"{message.author.name} (ID: {message.author.id}) sent message in '{message.channel.name}':")
+        print(message.content)
         return
 
     give = message.content
@@ -219,4 +283,5 @@ async def on_message(message):
                 )
 
 
-client.run(TOKEN)
+client.run(
+    TOKEN)
